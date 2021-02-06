@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserParticipation index{% endblock %}
+
+{% block body %}
+    <h1>UserParticipation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Id user </th>
+                <th>Email user </th>
+
+                <th>DateDeb_E</th>
+                <th>DateFin_E</th>
+                <th>HeurDeb_E</th>
+                <th>HeurFin_E</th>
+                <th>Type_E</th>
+                <th>TypeEntrainement_E</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for user_participation in user_participations %}
+            <tr>
+                <td>{{ user_participation.id }}</td>
+
+                <td>{{ user_participation.IDUser.id }}</td>
+                <td>{{ user_participation.IDUser.email }}</td>
+
+                <td>{{ user_participation.IDEnt.dateDebE ? user_participation.IDEnt.dateDebE|date('Y-m-d') : '' }}</td>
+                <td>{{ user_participation.IDEnt.dateFinE ? user_participation.IDEnt.dateFinE|date('Y-m-d') : '' }}</td>
+                <td>{{ user_participation.IDEnt.heurDebE ? user_participation.IDEnt.heurDebE|date('H:i:s') : '' }}</td>
+                <td>{{ user_participation.IDEnt.heurFinE ? user_participation.IDEnt.heurFinE|date('H:i:s') : '' }}</td>
+                <td>{{ user_participation.IDEnt.typeE ? user_participation.IDEnt.typeE|json_encode : '' }}</td>
+                <td>{{ user_participation.IDEnt.typeEntrainementE ? user_participation.IDEnt.typeE|json_encode : '' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_participation_new') }}">Create new</a>
+{% endblock %}

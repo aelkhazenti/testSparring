@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrainement{% endblock %}
+
+{% block body %}
+    <h1>Entrainement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entrainement.id }}</td>
+            </tr>
+            <tr>
+                <th>DateDeb_E</th>
+                <td>{{ entrainement.dateDebE ? entrainement.dateDebE|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin_E</th>
+                <td>{{ entrainement.dateFinE ? entrainement.dateFinE|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeurDeb_E</th>
+                <td>{{ entrainement.heurDebE ? entrainement.heurDebE|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeurFin_E</th>
+                <td>{{ entrainement.heurFinE ? entrainement.heurFinE|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Type_E</th>
+                <td>{{ entrainement.typeE ? entrainement.typeE|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>TypeEntrainement_E</th>
+                <td>{{ entrainement.typeEntrainementE ? entrainement.typeE |json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>email Creator</th>
+                <td>{{ entrainement.IDUser.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('entrainement_index') }}">back to list</a>
+
+    <a href="{{ path('entrainement_edit', {'id': entrainement.id}) }}">edit</a>
+
+    {{ include('entrainement/_delete_form.html.twig') }}
+{% endblock %}

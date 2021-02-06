@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ app.user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ app.user.roles ? app.user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ app.user.password }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo_U</th>
+                <td>{{ app.user.pseudoU }}</td>
+            </tr>
+            <tr>
+                <th>Hauteur_U</th>
+                <td>{{ app.user.hauteurU }}</td>
+            </tr>
+            <tr>
+                <th>Poids_U</th>
+                <td>{{ app.user.poidsU }}</td>
+            </tr>
+            <tr>
+                <th>Age_U</th>
+                <td>{{ app.user.ageU }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <a href="{{ path('user_edit', {'id': app.user.id}) }}">edit</a>
+
+{% endblock %}

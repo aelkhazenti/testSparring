@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MonEntrainementController!{% endblock %}
+
+{% block body %}
+<h1>my Participation</h1>
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Id user </th>
+                <th>Email user </th>
+
+                <th>DateDeb_E</th>
+                <th>DateFin_E</th>
+                <th>HeurDeb_E</th>
+                <th>HeurFin_E</th>
+                <th>Type_E</th>
+                <th>TypeEntrainement_E</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for myentrainement in myentrainements %}
+            <tr>
+                <td>{{ myentrainement.id }}</td>
+
+                <td>{{ myentrainement.IDUser.id }}</td>
+                <td>{{ myentrainement.IDUser.email }}</td>
+
+                <td>{{ myentrainement.IDEnt.dateDebE ? myentrainement.IDEnt.dateDebE|date('Y-m-d') : '' }}</td>
+                <td>{{ myentrainement.IDEnt.dateFinE ? myentrainement.IDEnt.dateFinE|date('Y-m-d') : '' }}</td>
+                <td>{{ myentrainement.IDEnt.heurDebE ? myentrainement.IDEnt.heurDebE|date('H:i:s') : '' }}</td>
+                <td>{{ myentrainement.IDEnt.heurFinE ? myentrainement.IDEnt.heurFinE|date('H:i:s') : '' }}</td>
+                <td>{{ myentrainement.IDEnt.typeE ? myentrainement.IDEnt.typeE|json_encode : '' }}</td>
+                <td>{{ myentrainement.IDEnt.typeEntrainementE ? myentrainement.IDEnt.typeE|json_encode : '' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

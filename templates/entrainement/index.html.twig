@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrainement index{% endblock %}
+
+{% block body %}
+    <h1>Entrainement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateDeb_E</th>
+                <th>DateFin_E</th>
+                <th>HeurDeb_E</th>
+                <th>HeurFin_E</th>
+                <th>Type_E</th>
+                <th>TypeEntrainement_E</th>
+                <th>email Creator</th>
+                <th>actions</th>
+                <th>pariciper</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entrainement in entrainements %}
+            <tr>
+                <td>{{ entrainement.id }}</td>
+                <td>{{ entrainement.dateDebE ? entrainement.dateDebE|date('Y-m-d') : '' }}</td>
+                <td>{{ entrainement.dateFinE ? entrainement.dateFinE|date('Y-m-d') : '' }}</td>
+                <td>{{ entrainement.heurDebE ? entrainement.heurDebE|date('H:i:s') : '' }}</td>
+                <td>{{ entrainement.heurFinE ? entrainement.heurFinE|date('H:i:s') : '' }}</td>
+                <td>{{ entrainement.typeE ? entrainement.typeE|json_encode : '' }}</td>
+                <td>{{ entrainement.typeEntrainementE ? entrainement.typeE|json_encode : '' }}</td>
+                <td>{{ entrainement.IDUser.email }}</td>
+                <td>
+                    <a href="{{ path('entrainement_show', {'id': entrainement.id}) }}">show</a>
+                    <a href="{{ path('entrainement_edit', {'id': entrainement.id}) }}">edit</a>
+                </td>
+                <td> 
+                 <a href="{{ path('add_participation', {'id': entrainement.id}) }}">participer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('entrainement_new') }}">Create new</a>
+{% endblock %}
