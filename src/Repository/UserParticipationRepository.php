@@ -4,8 +4,9 @@ namespace App\Repository;
 
 use App\Entity\UserParticipation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
 /**
  * @method UserParticipation|null find($id, $lockMode = null, $lockVersion = null)
  * @method UserParticipation|null findOneBy(array $criteria, array $orderBy = null)
@@ -19,32 +20,20 @@ class UserParticipationRepository extends ServiceEntityRepository
         parent::__construct($registry, UserParticipation::class);
     }
 
-    // /**
-    //  * @return UserParticipation[] Returns an array of UserParticipation objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function getUserPartisipationByID($userid){
 
-    /*
-    public function findOneBySomeField($value): ?UserParticipation
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+
+        $qb = $this->createQueryBuilder('p');
+        $qb 
+        
+        ->innerJoin('App\Entity\User','u',Join::WITH , ':userid=p.ID_User')
+    
+        ->setParameter('userid',$userid)
+            ;
+
+        dump($qb->getQuery()->getResult());
+
+        return $qb->getQuery()->getResult();
+
     }
-    */
 }

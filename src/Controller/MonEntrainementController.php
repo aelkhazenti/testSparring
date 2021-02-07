@@ -20,9 +20,10 @@ class MonEntrainementController extends AbstractController
     public function index(UserParticipationRepository $userParticipationRepository): Response
     {    
         
+        $userid=$this->getUser();
 
         return $this->render('mon_entrainement/index.html.twig', [
-            'myentrainements' => $userParticipationRepository->findAll(),
+            'myentrainements' => $userParticipationRepository->getUserPartisipationByID($userid),
         ]);
     }
 
