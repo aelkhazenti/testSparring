@@ -38,3 +38,4 @@ security:
         - { path: ^/entrainement, roles: [ROLE_USER, ROLE_ENTRAINNEUR, ROLE_ADMIN] }
         - { path: ^/profile, roles: [ROLE_USER, ROLE_ENTRAINNEUR, ROLE_ADMIN] }
         - { path: ^/user/participation, roles: ROLE_ADMIN }
+        - { path: ^/profile/entrainement, roles: [ROLE_USER, ROLE_ENTRAINNEUR, ROLE_ADMIN]}

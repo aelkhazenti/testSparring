@@ -19,7 +19,8 @@
 3. /profile
 4. /entrainement
 5. /user/participation
-
+6. /profile/entrainement
+7. /email (test)
 
 
 ## Contributing

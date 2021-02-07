@@ -6,6 +6,7 @@ use App\Entity\Entrainement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+use Doctrine\ORM\Query\Expr\Join;
 /**
  * @method Entrainement|null find($id, $lockMode = null, $lockVersion = null)
  * @method Entrainement|null findOneBy(array $criteria, array $orderBy = null)
@@ -19,32 +20,20 @@ class EntrainementRepository extends ServiceEntityRepository
         parent::__construct($registry, Entrainement::class);
     }
 
-    // /**
-    //  * @return Entrainement[] Returns an array of Entrainement objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Entrainement
+    public function getEntrainement($userID)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('e');
+        $qb 
+        
+        ->innerJoin('App\Entity\User','u',Join::WITH , ':userid != e.ID_User')
+    
+        ->setParameter('userid',$userID)
+            ;
+
+        dump($qb->getQuery()->getResult());
+
+        return $qb->getQuery()->getResult();
     }
-    */
+    
 }

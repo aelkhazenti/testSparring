@@ -26,8 +26,9 @@ class EntrainementController extends AbstractController
      */
     public function index(EntrainementRepository $entrainementRepository): Response
     {
+        $userid=$this->getUser();
         return $this->render('entrainement/index.html.twig', [
-            'entrainements' => $entrainementRepository->findAll(),
+            'entrainements' => $entrainementRepository->getEntrainement($userid),
         ]);
     }
 

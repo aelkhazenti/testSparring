@@ -21,11 +21,8 @@ class UserParticipationRepository extends ServiceEntityRepository
     }
 
     public function getUserPartisipationByID($userid){
-
-
         $qb = $this->createQueryBuilder('p');
-        $qb 
-        
+        $qb  
         ->innerJoin('App\Entity\User','u',Join::WITH , ':userid=p.ID_User')
     
         ->setParameter('userid',$userid)
